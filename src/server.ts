@@ -7,9 +7,9 @@ dotenv.config();
 let server:Server;
 async function main() {
    try {
-     mongoose.connect("mongodb+srv://pnob9439:aIf1iURTDfSKbJxb@assignment-3.1zjuptl.mongodb.net/?retryWrites=true&w=majority&appName=assignment-3")
-     server = app.listen(5000, () => {
-      console.log(`Application is running on port ${5000}`);
+     mongoose.connect(process.env.DB_URL as string)
+     server = app.listen(process.env.PORT, () => {
+      console.log(`Application is running on port ${process.env.PORT}`);
     });
 } catch (error) {
     console.log("MongoDb Server Error",error)
