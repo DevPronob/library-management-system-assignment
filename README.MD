@@ -1,6 +1,6 @@
-# 📚 Library Management System
+# Library Management System
 
-## 📦 Tech Stack
+## Tech Stack
 
 - **Node.js**
 - **Express.js**
