@@ -23,6 +23,11 @@ cd library-management-system-assignment
 npm install
 ```
 
+### Environment Variables
+```bash
+DB_URL=mongodb+srv://pnob9439:aIf1iURTDfSKbJxb@assignment-3.1zjuptl.mongodb.net/?retryWrites=true&w=majority&appName=assignment-3
+PORT=5000
+```
 
 > then add this on package.json for start the application
 
