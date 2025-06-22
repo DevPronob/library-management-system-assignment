@@ -36,16 +36,17 @@ booksouter.get("/", async (req: Request, res: Response) => {
   const genre = req.query.filter;
   const limit = req.query.limit || 10;
   const sortBy = req.query.sortBy;
-  const sort = req.query.sort; 
+  const sort =req.query.sort
   try {
-    let books;
-    if (genre) {
-      books = await Book.find({ genre: genre });
-    } else {
-      books = await Book.find()
-        .sort({ [sortBy as string]: sort =="desc"? -1:1 })
-        .limit(Number(limit));
-    }
+   const query: any = {};
+    if (genre) query.genre = genre;
+
+    const sortOption = sortBy ? { [sortBy as string]: sort === "desc" ? -1 : 1 } : {};
+
+    const books = await Book.find(query)
+      .sort(sortOption as any)
+      .limit(Number(limit));
+
     res.status(200).json({
       success: true,
       message: "Books retrieved successfully",
@@ -59,7 +60,6 @@ booksouter.get("/", async (req: Request, res: Response) => {
   });
   }
 });
-
 booksouter.get("/:bookId", async (req: Request, res: Response) => {
   try {
     const book = await Book.find({ _id: req.params.bookId });
