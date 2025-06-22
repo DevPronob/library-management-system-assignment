@@ -32,7 +32,7 @@ PORT=5000
 > then add this on package.json for start the application
 
 ```bash
- "dev": "ts-node-dev --respawn --transpile-only src/server.ts",v
+ "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
 ```
 
 
