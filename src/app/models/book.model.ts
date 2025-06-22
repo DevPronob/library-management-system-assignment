@@ -28,7 +28,7 @@ const bookSchema = new Schema<IBooks,IBookModel>({
 
 bookSchema.methods.decreaseCopies =async function(quantity: number) {
   this.copies -= quantity;
-  if (this.copies == 0) {
+   if (this.copies <= 0) {
     this.available = false;
   }
   await this.save();

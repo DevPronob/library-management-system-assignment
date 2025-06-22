@@ -35,22 +35,12 @@ PORT=5000
  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
 ```
 
+## 🚀 Features
 
-## 🔗 API Endpoints
+-  Add, update, retrieve, and delete books  
+-  Borrow books with availability checks  
+-  Schema validation using Mongoose  
+-  Aggregation pipeline for borrowing book  
+-  Filtering, sorting, and limit  on book queries  
+-  Use Mongoose instancestatic methods 
 
-### Book Routes
-
-| Method | Endpoint           | Description                 |
-|--------|--------------------|-----------------------------|
-| POST   | /api/books         | Create a new book           |
-| GET    | /api/books         | Get all books (with filter) |
-| GET    | /api/books/:id     | Get a book by ID            |
-| PUT    | /api/books/:id     | Update a book               |
-| DELETE | /api/books/:id     | Delete a book               |
-
-### Borrow Routes
-
-| Method | Endpoint      | Description                            |
-|--------|---------------|----------------------------------------|
-| POST   | /api/borrow   | Borrow a book                          |
-| GET    | /api/borrow   | Get borrow summary (aggregation)       |
