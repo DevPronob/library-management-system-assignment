@@ -9,6 +9,17 @@
 
 ---
 
+
+## 🚀 Features
+
+-  Add, update, retrieve, and delete books  
+-  Borrow books with availability checks  
+-  Schema validation using Mongoose  
+-  Aggregation pipeline for borrowing book  
+-  Filtering, sorting, and limit  on book queries  
+-  Use Mongoose instancestatic methods 
+
+
 ## 🛠️ Setup Instructions
 
 
@@ -35,12 +46,4 @@ PORT=5000
  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
 ```
 
-## 🚀 Features
-
--  Add, update, retrieve, and delete books  
--  Borrow books with availability checks  
--  Schema validation using Mongoose  
--  Aggregation pipeline for borrowing book  
--  Filtering, sorting, and limit  on book queries  
--  Use Mongoose instancestatic methods 
 
