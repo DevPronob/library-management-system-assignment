@@ -97,6 +97,16 @@ exports.booksouter.put("/:bookId", (req, res) => __awaiter(void 0, void 0, void 
         const book = yield book_model_1.Book.findByIdAndUpdate(req.params.bookId, req.body, {
             new: true,
         });
+        if (book.copies > 1) {
+            const book = yield book_model_1.Book.findByIdAndUpdate(req.params.bookId, { available: true }, {
+                new: true,
+            });
+        }
+        else if (book.copies < 1) {
+            const book = yield book_model_1.Book.findByIdAndUpdate(req.params.bookId, { available: false }, {
+                new: true,
+            });
+        }
         res.status(200).json({
             success: true,
             message: "Book updated successfully",

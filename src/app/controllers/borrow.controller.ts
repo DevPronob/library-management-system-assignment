@@ -5,45 +5,36 @@ import { z } from "zod";
 
 export const BorrowBookRouter = express.Router();
 
-BorrowBookRouter.post("/", async (req: Request, res: Response) => {
-  try {
+BorrowBookRouter.post("/", async (req: Request, res: Response):Promise<any> => {
+ try {
     const body = req.body;
     const book = await Book.findById(body.book);
 
-    if (book) {
-      await book.decreaseCopies(req.body.quantity)
-
-      if (book.copies < body.quantity) {
-        res.status(404).json({
-          success: false,
-          message: "Not enough copies available",
-        });
-      }
-
-      const borrowBook = await BorrowBook.create(req.body);
-
-      res.status(201).json({
-        success: true,
-        message: "Book borrowed successfully",
-        data: borrowBook,
-      });
-    } else {
-      res.status(404).json({ success: false, message: "Book Not Found" });
+    if (!book) {
+      return res.status(404).json({ success: false, message: "Book Not Found" });
     }
+console.log(book)
+    if (book.copies < body.quantity) {
+      return res.status(404).json({
+        success: false,
+        message: "Not enough copies available",
+      });
+    }
+
+    await book.decreaseCopies(body.quantity);
+
+    const borrowBook = await BorrowBook.create(body);
+
+    return res.status(201).json({
+      success: true,
+      message: "Book borrowed successfully",
+      data: borrowBook,
+    });
   } catch (error: any) {
-    if (error.name === 'ValidationError') {
-       res.status(400).json({
-         message: 'Validation failed',
-         success: false, 
-        error: error.errors,
-      });
-    }
-    res.status(400).json({
-    message: error.name || 'Error',
-    success: false,
-    error: error,
-  });
-
+    return res.status(400).json({
+      success: false,
+      message: error.message || "Something went wrong",
+    });
   }
 });
 

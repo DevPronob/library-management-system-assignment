@@ -45,5 +45,6 @@ PORT=5000
 ```bash
  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
 ```
-### live link : https://assignment-3-blue-seven.vercel.app
+### Frontend Live LINK : https://library-frontend-black.vercel.app/
+### Backend Live Link : https://library-backend-cyan.vercel.app/
 

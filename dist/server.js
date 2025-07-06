@@ -20,9 +20,9 @@ let server;
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            mongoose_1.default.connect("mongodb+srv://pnob9439:aIf1iURTDfSKbJxb@assignment-3.1zjuptl.mongodb.net/?retryWrites=true&w=majority&appName=assignment-3");
-            server = app_1.default.listen(5000, () => {
-                console.log(`Application is running on port ${5000}`);
+            mongoose_1.default.connect(process.env.DB_URL);
+            server = app_1.default.listen(process.env.PORT, () => {
+                console.log(`Application is running on port ${process.env.PORT}`);
             });
         }
         catch (error) {

@@ -70,7 +70,7 @@ const bookSchema = new mongoose_1.Schema({
 bookSchema.methods.decreaseCopies = function (quantity) {
     return __awaiter(this, void 0, void 0, function* () {
         this.copies -= quantity;
-        if (this.copies == 0) {
+        if (this.copies <= 0) {
             this.available = false;
         }
         yield this.save();

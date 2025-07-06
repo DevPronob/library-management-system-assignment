@@ -21,37 +21,28 @@ exports.BorrowBookRouter.post("/", (req, res) => __awaiter(void 0, void 0, void 
     try {
         const body = req.body;
         const book = yield book_model_1.Book.findById(body.book);
-        if (book) {
-            yield book.decreaseCopies(req.body.quantity);
-            if (book.copies < body.quantity) {
-                res.status(404).json({
-                    success: false,
-                    message: "Not enough copies available",
-                });
-            }
-            const borrowBook = yield borrow_model_1.BorrowBook.create(req.body);
-            res.status(201).json({
-                success: true,
-                message: "Book borrowed successfully",
-                data: borrowBook,
+        if (!book) {
+            return res.status(404).json({ success: false, message: "Book Not Found" });
+        }
+        console.log(book);
+        if (book.copies < body.quantity) {
+            return res.status(404).json({
+                success: false,
+                message: "Not enough copies available",
             });
         }
-        else {
-            res.status(404).json({ success: false, message: "Book Not Found" });
-        }
+        yield book.decreaseCopies(body.quantity);
+        const borrowBook = yield borrow_model_1.BorrowBook.create(body);
+        return res.status(201).json({
+            success: true,
+            message: "Book borrowed successfully",
+            data: borrowBook,
+        });
     }
     catch (error) {
-        if (error.name === 'ValidationError') {
-            res.status(400).json({
-                message: 'Validation failed',
-                success: false,
-                error: error.errors,
-            });
-        }
-        res.status(400).json({
-            message: error.name || 'Error',
+        return res.status(400).json({
             success: false,
-            error: error,
+            message: error.message || "Something went wrong",
         });
     }
 }));
