@@ -44,7 +44,7 @@ exports.booksouter.post("/", (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 exports.booksouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const genre = req.query.filter;
-    const limit = req.query.limit || 10;
+    const limit = req.query.limit;
     const sortBy = req.query.sortBy;
     const sort = req.query.sort;
     try {
